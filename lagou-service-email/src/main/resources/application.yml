@@ -1,0 +1,68 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: lagou-service-email
+    # nacos配置
+  mail:
+    # 163
+    host: smtp.partner.outlook.cn
+    port: 587
+    username: 123
+    password: 123
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.connectiontimeout: 1s0000
+      mail.smtp.timeout: 10000
+  cloud:
+    nacos:
+      discovery:
+        # 集群中各节点信息都配置在这里（域名-VIP-绑定映射到各个实例的地址信息）
+        server-addr: 127.0.0.1:8848
+      sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080 # sentinel dashboard/console 地址
+        port: 8719   #  sentinel会在该端口启动http server，那么这样的话，控制台定义的一些限流等规则才能发送传递过来，
+                      #如果8719端口被占用，那么会依次+1
+      # Sentinel Nacos数据源配置，Nacos中的规则会自动同步到sentinel流控规则中
+      # nacos config 配置
+      config:
+        server-addr: 127.0.0.1:8848
+        # 锁定server端的配置文件（读取它的配置项）
+        namespace: 07137f0a-bf66-424b-b910-20ece612395a  # 命名空间id
+        group: DEFAULT_GROUP  # 默认分组就是DEFAULT_GROUP，如果使用默认分组可以不配置
+        file-extension: yaml   #默认properties
+        # 根据规则拼接出来的dataId效果：lagou-service-email.yaml
+        ext-config[0]:
+          data-id: abc.yaml
+          group: DEFAULT_GROUP
+          refresh: true  #开启扩展dataId的动态刷新
+        ext-config[1]:
+          data-id: def.yaml
+          group: DEFAULT_GROUP
+          refresh: true  #开启扩展dataId的动态刷新
+  main:
+    allow-bean-definition-overriding: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+dubbo:
+  scan:
+    # dubbo 服务扫描基准包
+    base-packages: com.lagou.edu.service.impl
+  protocol:
+    # dubbo 协议
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: -1
+    host: 127.0.0.1
+  registry:
+    # 挂载到 Spring Cloud 的注册中心
+    address: spring-cloud://localhost
+
+

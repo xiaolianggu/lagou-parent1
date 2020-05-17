@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="lagou-cloud-configserver-9006" />
+        <module name="lagou-cloud-eureka-server-8761" />
+        <module name="lagou-cloud-eureka-server-8762" />
+        <module name="lagou-cloud-hystrix-dashboard-9000" />
+        <module name="lagou-cloud-hystrix-turbine-9001" />
+        <module name="lagou-cloud-stream-consumer-9091" />
+        <module name="lagou-cloud-stream-consumer-9092" />
+        <module name="lagou-cloud-stream-producer-9090" />
+        <module name="lagou-service-autodeliver-8090" />
+        <module name="lagou-service-autodeliver-8091" />
+        <module name="lagou-service-autodeliver-8096" />
+        <module name="lagou-service-code" />
+        <module name="lagou-service-common" />
+        <module name="lagou-service-email" />
+        <module name="lagou-service-html" />
+        <module name="lagou-service-resume-8080" />
+        <module name="lagou-service-resume-8081" />
+        <module name="lagou-service-user" />
+        <module name="lagoucloudgateway9002" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lagou-cloud-configserver-9006" target="1.8" />
+      <module name="lagou-cloud-eureka-server-8761" target="1.8" />
+      <module name="lagou-cloud-eureka-server-8762" target="1.8" />
+      <module name="lagou-cloud-hystrix-dashboard-9000" target="1.8" />
+      <module name="lagou-cloud-hystrix-turbine-9001" target="1.8" />
+      <module name="lagou-cloud-stream-consumer-9091" target="1.8" />
+      <module name="lagou-cloud-stream-consumer-9092" target="1.8" />
+      <module name="lagou-cloud-stream-producer-9090" target="1.8" />
+      <module name="lagou-parent" target="1.8" />
+      <module name="lagou-service-autodeliver-8090" target="1.8" />
+      <module name="lagou-service-autodeliver-8091" target="1.8" />
+      <module name="lagou-service-autodeliver-8096" target="1.8" />
+      <module name="lagou-service-code" target="1.8" />
+      <module name="lagou-service-common" target="1.8" />
+      <module name="lagou-service-email" target="1.8" />
+      <module name="lagou-service-html" target="1.8" />
+      <module name="lagou-service-resume-8080" target="1.8" />
+      <module name="lagou-service-resume-8081" target="1.8" />
+      <module name="lagou-service-user" target="1.8" />
+      <module name="lagoucloudgateway9002" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
+

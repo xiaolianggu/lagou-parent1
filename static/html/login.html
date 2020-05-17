@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>用户登录</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript">
+ 
+     function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+   } 
+
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			 }
+			 if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			 }
+		 }
+		return "";
+	} 
+
+
+
+
+		 $(function(){
+				 $("#login").click(function(){
+					var email = $("#email").val();
+					var password = $("#password").val();
+				    $.ajax({
+					url: "http://www.test.com/user/login/"+email+"/"+password,
+					type: "GET",
+					dataType: "text",
+					success: function(data) {
+					  if(data==""){
+					     alert("登录失败")
+					  }else{
+                          setCookie("v_token",data,1);
+					     location.href="http://www.test.com/static/welcome.html";
+					  }
+					}
+				});
+				 
+			 });
+			    
+				
+			
+		 });
+
+	</script>
+  </head>
+  
+  <body>
+    <form name="login">
+    	<table  align="center">
+    		
+    			<td>邮箱</td>
+    			<td>
+    				<input type="text" name="email" id="email"/>
+				</td>
+    		</tr>
+    		<tr>
+    			<td>密码</td>
+    			<td>
+    				<input type="password" id="password"/>
+				</td>
+    		</tr>
+    		<tr>
+    			<td></td>
+    			<td>
+    				<input type="button" value="登录" id="login"/>
+    				<a href="http://www.test.com/static/register.html">注册</a>
+				</td>
+    		</tr>
+    	</table>
+    </form>	
+  </body>
+
+</html>

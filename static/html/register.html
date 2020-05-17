@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>用户登录</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript">
+      function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+   } 
+
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			 }
+			 if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			 }
+		 }
+		return "";
+	} 
+
+
+		 $(function(){
+
+			    $("#getCode").click(function(){
+					var email = $("#email").val();
+					var code = $("#code").val();
+				    $.ajax({
+					url: "http://www.test.com/user/sendCodeToEmailAndSave/"+email+"/"+code,
+					type: "GET",
+					dataType: "text",
+					success: function(data) {
+					  if(data=="true"){
+					     alert("发送成功")
+					  }else{
+
+					     alert("发送失败")
+					  }
+					}
+				 });
+				 });
+			    
+
+
+				
+			    $("#register").click(function(){
+					var email = $("#email").val();
+					var password = $("#password").val();
+					var code = $("#code").val();
+				    $.ajax({
+					url: "http://www.test.com/user/register/"+email+"/"+password+"/"+code,
+					type: "GET",
+					dataType: "text",
+					success: function(data) {
+					  if(data==""){
+						 setCookie("v_token",data,1);
+					     location.href="http://www.test.com/static/welcome.html";
+					  }else{
+
+					     alert("注册失败")
+					  }
+					}
+				 });
+				 });
+		 });
+
+	</script>
+  </head>
+  
+  <body>
+    <form name="login">
+    	<table  align="center">
+    		
+    			<td>邮箱</td>
+    			<td>
+    				<input type="text" name="emall" id="email"/>
+				</td>
+    		</tr>
+    		<tr>
+    			<td>密码</td>
+    			<td>
+    				<input type="password" id="password"/>
+				</td>
+    		</tr>
+			<tr>
+    			<td>验证码</td>
+    			<td>
+    				<input type="code" id="code"/><input type="button" value="获取验证码" id="getCode"/> 
+				</td>
+    		</tr>
+    		<tr>
+    			<td></td>
+    			<td>
+					<input type="button" value="注册" id="register"/> 
+				</td>
+    		</tr>
+    	</table>
+    </form>	
+  </body>
+
+</html>
